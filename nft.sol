@@ -1,10 +1,11 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract NicMeta is ERC721Enumerable, Ownable {
+contract JackNFT is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     bool public _isSaleActive = false; // Control ready to sale
@@ -29,12 +30,12 @@ contract NicMeta is ERC721Enumerable, Ownable {
         setNotRevealedURI(initNotRevealedUri);
     }
 
-    function mintNicMeta(uint256 tokenQuantity) public payable {
+    function mintJackNFT(uint256 tokenQuantity) public payable {
         require(
             totalSupply() + tokenQuantity <= MAX_SUPPLY,
             "Sale would exceed max supply"
         );
-        require(_isSaleActive, "Sale must be active to mint NicMetas");
+        require(_isSaleActive, "Sale must be active to mint JackNFTs");
         require(
             balanceOf(msg.sender) + tokenQuantity <= maxBalance,
             "Sale would exceed max balance"
@@ -45,10 +46,10 @@ contract NicMeta is ERC721Enumerable, Ownable {
         );
         require(tokenQuantity <= maxMint, "Can only mint 1 tokens at a time");
 
-        _mintNicMeta(tokenQuantity);
+        _mintJackNFT(tokenQuantity);
     }
 
-    function _mintNicMeta(uint256 tokenQuantity) internal {
+    function _mintJackNFT(uint256 tokenQuantity) internal {
         for (uint256 i = 0; i < tokenQuantity; i++) {
             uint256 mintIndex = totalSupply();
             if (totalSupply() < MAX_SUPPLY) {
